@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from my_api.database.products import get_products
 from my_api.database.users import get_users, get_user, add_user, delete_user
 
 app = Flask(__name__)
@@ -32,3 +33,9 @@ def users_create_api():
 def users_delete_api(id):
     user = delete_user(id)
     return jsonify(user)
+
+
+# Get all products
+@app.route("/products",  methods=['GET'])
+def products_api():
+    return jsonify(get_products())
